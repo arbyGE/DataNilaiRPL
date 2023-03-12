@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search copy.css">
+    <title>DATA RPL</title>
+    <style>
+      span{
+      color: white;
+      }
+    </style>
+</head>
+<body  class="bg-secondary" class="container">
+<b>
+  <div class="menu">
+  <li  style="float: right;"><a href="logout.php">LOG OUT</a></li>  
+        <ul class="nav nav-pills nav-fill">
+            <li><a href="homea.php">MANAJEMEN ADMIN</a></li>
+            <li><a href="siswaa.php">MANAJEMEN SISWA</a><li>
+            <li><a href="gurua.php">MANAJEMEN GURU</a><li>
+            <li><a href="nilaia.php">MANAJEMEN NILAI</a><li>
+        </ul></b>
+        
+    </div>
+    
+    <table  border="1" align=center style="background-color: white;" class="table table-dark table-striped-columns">
+        <div>
+        <tr align=center>
+            <th>NO</th>
+            <th>NIP</th>
+            <th>NAMA</th>
+            <th>JABATAN</th>
+            <th>MATA PELAJARAN</th>
+            <th colspan="2">ACTION</th>
+            
+        </tr>
+        <?php
+ include "koneksi.php";
+ include "session.php";
+ $no = 1;
+ $ambildata = mysqli_query($koneksi,"SELECT * FROM vguru");
+ while ($tampil = mysqli_fetch_array($ambildata)){
+    echo"
+    <tr>
+    <td>$no</td>
+    <td>$tampil[nip]</td>
+    <td>$tampil[nama]</td>
+    <td>$tampil[jabatan]</td>
+    <td>$tampil[namamapel]</td>
+    <td><a href='?kode=$tampil[nip]'>hapus</a></td>
+    <td><a href='ubahberita.php?kode=$tampil[nip]'>ubah</a></td>
+
+    </tr>";
+    $no++;
+ }
+ ?>
+    </table>         
+    <a class="btn btn-outline-light"  href="tambahguru.php" role="button"style="margin-left: 600px; ">Tambah data</a>
+  </body>
+</html>
+
+
+ 
